@@ -1,5 +1,7 @@
 package com.springframework.jokeapp.controllers;
 
+import java.util.concurrent.ExecutionException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String getHomePage(Model model) {
+		Thread.currentThread().setName("joke thread");
 		model.addAttribute("jokes", jokeService.getJokes());
 		return "chucknorris";
 	}
@@ -25,4 +28,5 @@ public class HomeController {
 		System.out.println(jokeService.getJoke());
 		return "chucknorrisjoke";
 	}
+	
 }
